@@ -1,0 +1,20 @@
+export enum UserRole {
+  ADMIN = 'ADMIN',
+  CUSTOMER = 'CUSTOMER',
+  PROVIDER = 'PROVIDER',
+  SUPPORT = 'SUPPORT',
+}
+
+export enum UserStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  SUSPENDED = 'SUSPENDED',
+  PENDING_VERIFICATION = 'PENDING_VERIFICATION',
+  BANNED = 'BANNED',
+}
+
+export enum Gender {
+  MALE = 'MALE',
+  FEMALE = 'FEMALE',
+  OTHER = 'OTHER',
+}

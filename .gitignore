@@ -1,0 +1,60 @@
+# compiled output
+/dist
+/node_modules
+/build
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+
+# Tests
+/coverage
+/.nyc_output
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Environment
+.env
+.env.local
+.env.*.local
+.env.production
+.env.docker
+*.pem
+# Uploads
+/uploads
+!/uploads/.gitkeep
+
+# Database
+*.db
+*.sqlite
+
+# Docker
+docker-compose.override.yml
+
+./postman-collection.json
+
+# Temp files
+*.swp
+*.swo
+*~
+.tmp

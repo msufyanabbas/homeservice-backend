@@ -1,0 +1,72 @@
+# Render.com Blueprint
+# This file tells Render how to deploy your application
+
+services:
+  # NestJS Web Service
+  - type: web
+    name: home-services-api
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:prod
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: DATABASE_URL
+        fromDatabase:
+          name: home-services-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: home-services-redis
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: JWT_ACCESS_EXPIRATION
+        value: 15m
+      - key: JWT_REFRESH_EXPIRATION
+        value: 7d
+      - key: SKIP_OTP_VERIFICATION
+        value: true
+      - key: ADMIN_EMAIL
+        value: admin@homeservices.sa
+      - key: ADMIN_PASSWORD
+        generateValue: true
+      - key: API_PREFIX
+        value: api/v1
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: APP_URL
+        sync: false
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_PHONE_NUMBER
+        sync: false
+      - key: MOYASAR_API_KEY
+        sync: false
+      - key: MOYASAR_SECRET_KEY
+        sync: false
+
+  # PostgreSQL Database
+  - type: postgres
+    name: home-services-db
+    plan: free
+    databaseName: home_services
+    user: home_services_user
+    ipAllowList: []
+
+  # Redis Cache
+  - type: redis
+    name: home-services-redis
+    plan: free
+    maxmemoryPolicy: allkeys-lru
+    ipAllowList: []

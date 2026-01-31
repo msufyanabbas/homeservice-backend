@@ -1,0 +1,57 @@
+# Node modules
+node_modules
+npm-debug.log
+
+# TypeScript build output
+dist
+*.tsbuildinfo
+
+# Logs
+logs
+*.log
+
+# Testing
+coverage
+.nyc_output
+*.spec.ts
+test/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Git
+.git
+.gitignore
+.github
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation
+*.md
+!README.md
+docs/
+
+# Docker files
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# CI/CD
+.github/
+
+# Uploads (will be mounted as volume)
+uploads/
+
+# Development files
+*.development.*

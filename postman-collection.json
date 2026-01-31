@@ -1,0 +1,1915 @@
+{
+  "info": {
+    "_postman_id": "home-services-api-collection",
+    "name": "Makhdoom - Home Services Platform API",
+    "description": "Complete API collection for the Home Services Platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000/api",
+      "type": "string"
+    },
+    {
+      "key": "access_token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"+966501234567\",\n  \"email\": \"user@example.com\",\n  \"password\": \"Password123\",\n  \"firstName\": \"Ahmed\",\n  \"lastName\": \"Al-Saud\",\n  \"firstNameAr\": \"أحمد\",\n  \"lastNameAr\": \"آل سعود\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/auth/register", "host": ["{{base_url}}"], "path": ["auth", "register"]}
+          }
+        },
+        {
+          "name": "Verify OTP",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"+966501234567\",\n  \"code\": \"123456\",\n  \"purpose\": \"registration\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/auth/verify-otp", "host": ["{{base_url}}"], "path": ["auth", "verify-otp"]}
+          }
+        },
+        {
+          "name": "Resend OTP",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"+966501234567\",\n  \"purpose\": \"registration\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/auth/resend-otp", "host": ["{{base_url}}"], "path": ["auth", "resend-otp"]}
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"+966501234567\",\n  \"password\": \"Password123\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/auth/login", "host": ["{{base_url}}"], "path": ["auth", "login"]}
+          }
+        },
+        {
+          "name": "Forgot Password",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"+966501234567\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/auth/forgot-password", "host": ["{{base_url}}"], "path": ["auth", "forgot-password"]}
+          }
+        },
+        {
+          "name": "Reset Password",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"+966501234567\",\n  \"code\": \"123456\",\n  \"newPassword\": \"NewPassword123\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/auth/reset-password", "host": ["{{base_url}}"], "path": ["auth", "reset-password"]}
+          }
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"your-refresh-token-here\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/auth/refresh-token", "host": ["{{base_url}}"], "path": ["auth", "refresh-token"]}
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "url": {"raw": "{{base_url}}/auth/logout", "host": ["{{base_url}}"], "path": ["auth", "logout"]}
+          }
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currentPassword\": \"Password123\",\n  \"newPassword\": \"NewPassword456\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/auth/change-password", "host": ["{{base_url}}"], "path": ["auth", "change-password"]}
+          }
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/auth/me", "host": ["{{base_url}}"], "path": ["auth", "me"]}
+          }
+        },
+        {
+          "name": "Update FCM Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fcmToken\": \"your-fcm-token-here\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/auth/update-fcm-token", "host": ["{{base_url}}"], "path": ["auth", "update-fcm-token"]}
+          }
+        },
+        {
+          "name": "Remove FCM Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fcmToken\": \"your-fcm-token-here\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/auth/remove-fcm-token", "host": ["{{base_url}}"], "path": ["auth", "remove-fcm-token"]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Create User (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"+966502345678\",\n  \"email\": \"newuser@example.com\",\n  \"password\": \"Password123\",\n  \"firstName\": \"Mohammed\",\n  \"lastName\": \"Ali\",\n  \"role\": \"CUSTOMER\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/users", "host": ["{{base_url}}"], "path": ["users"]}
+          }
+        },
+        {
+          "name": "Get All Users (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/users?page=1&limit=20", "host": ["{{base_url}}"], "path": ["users"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Search Users (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/users/search?q=ahmed&page=1&limit=20", "host": ["{{base_url}}"], "path": ["users", "search"], "query": [{"key": "q", "value": "ahmed"}, {"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Get My Profile",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/users/profile", "host": ["{{base_url}}"], "path": ["users", "profile"]}
+          }
+        },
+        {
+          "name": "Update My Profile",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Ahmed\",\n  \"lastName\": \"Al-Saud\",\n  \"dateOfBirth\": \"1990-01-15\",\n  \"gender\": \"male\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/users/profile", "host": ["{{base_url}}"], "path": ["users", "profile"]}
+          }
+        },
+        {
+          "name": "Get User Statistics (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/users/statistics", "host": ["{{base_url}}"], "path": ["users", "statistics"]}
+          }
+        },
+        {
+          "name": "Get User By ID (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/users/:id", "host": ["{{base_url}}"], "path": ["users", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Update User (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Updated Name\",\n  \"role\": \"PROVIDER\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/users/:id", "host": ["{{base_url}}"], "path": ["users", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Suspend User (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Violation of terms of service\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/users/:id/suspend", "host": ["{{base_url}}"], "path": ["users", ":id", "suspend"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Activate User (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/users/:id/activate", "host": ["{{base_url}}"], "path": ["users", ":id", "activate"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Delete User (Admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/users/:id", "host": ["{{base_url}}"], "path": ["users", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Providers",
+      "item": [
+        {
+          "name": "Register as Provider",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"iqamaNumber\": \"1234567890\",\n  \"serviceCategories\": [\"550e8400-e29b-41d4-a716-446655440001\"],\n  \"businessName\": \"Ahmed Plumbing Services\",\n  \"businessNameAr\": \"خدمات أحمد للسباكة\",\n  \"bio\": \"Professional plumber with 10 years experience\",\n  \"experienceYears\": 10\n}"
+            },
+            "url": {"raw": "{{base_url}}/providers/register", "host": ["{{base_url}}"], "path": ["providers", "register"]}
+          }
+        },
+        {
+          "name": "Get All Providers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/providers?page=1&limit=20", "host": ["{{base_url}}"], "path": ["providers"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Get Nearby Providers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/providers/nearby?latitude=24.7136&longitude=46.6753&radius=20", "host": ["{{base_url}}"], "path": ["providers", "nearby"], "query": [{"key": "latitude", "value": "24.7136"}, {"key": "longitude", "value": "46.6753"}, {"key": "radius", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Get Top Rated Providers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/providers/top-rated?page=1&limit=10", "host": ["{{base_url}}"], "path": ["providers", "top-rated"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "10"}]}
+          }
+        },
+        {
+          "name": "Search Providers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/providers/search?q=plumber&page=1&limit=20", "host": ["{{base_url}}"], "path": ["providers", "search"], "query": [{"key": "q", "value": "plumber"}, {"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Get My Provider Profile",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/providers/me", "host": ["{{base_url}}"], "path": ["providers", "me"]}
+          }
+        },
+        {
+          "name": "Update My Provider Profile",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bio\": \"Updated bio with more experience\",\n  \"experienceYears\": 12\n}"
+            },
+            "url": {"raw": "{{base_url}}/providers/me", "host": ["{{base_url}}"], "path": ["providers", "me"]}
+          }
+        },
+        {
+          "name": "Update Availability",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isAvailable\": true,\n  \"availableFrom\": \"08:00\",\n  \"availableTo\": \"18:00\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/providers/me/availability", "host": ["{{base_url}}"], "path": ["providers", "me", "availability"]}
+          }
+        },
+        {
+          "name": "Update Location",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"latitude\": 24.7136,\n  \"longitude\": 46.6753\n}"
+            },
+            "url": {"raw": "{{base_url}}/providers/me/location", "host": ["{{base_url}}"], "path": ["providers", "me", "location"]}
+          }
+        },
+        {
+          "name": "Get My Statistics",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/providers/me/statistics", "host": ["{{base_url}}"], "path": ["providers", "me", "statistics"]}
+          }
+        },
+        {
+          "name": "Get My Earnings",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/providers/me/earnings?startDate=2024-01-01&endDate=2024-12-31", "host": ["{{base_url}}"], "path": ["providers", "me", "earnings"], "query": [{"key": "startDate", "value": "2024-01-01"}, {"key": "endDate", "value": "2024-12-31"}]}
+          }
+        },
+        {
+          "name": "Upload Document",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {"key": "file", "type": "file", "src": ""},
+                {"key": "documentType", "value": "iqama", "type": "text"}
+              ]
+            },
+            "url": {"raw": "{{base_url}}/providers/me/documents", "host": ["{{base_url}}"], "path": ["providers", "me", "documents"]}
+          }
+        },
+        {
+          "name": "Get My Documents",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/providers/me/documents", "host": ["{{base_url}}"], "path": ["providers", "me", "documents"]}
+          }
+        },
+        {
+          "name": "Delete Document",
+          "request": {
+            "method": "DELETE",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/providers/me/documents/:documentId", "host": ["{{base_url}}"], "path": ["providers", "me", "documents", ":documentId"], "variable": [{"key": "documentId", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Get Provider By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/providers/:id", "host": ["{{base_url}}"], "path": ["providers", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Get Provider Reviews",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/providers/:id/reviews?page=1&limit=10", "host": ["{{base_url}}"], "path": ["providers", ":id", "reviews"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "10"}], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Get Provider Services",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/providers/:id/services", "host": ["{{base_url}}"], "path": ["providers", ":id", "services"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Approve Provider (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/providers/:id/approve", "host": ["{{base_url}}"], "path": ["providers", ":id", "approve"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Reject Provider (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Incomplete documentation\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/providers/:id/reject", "host": ["{{base_url}}"], "path": ["providers", ":id", "reject"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Suspend Provider (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Policy violation\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/providers/:id/suspend", "host": ["{{base_url}}"], "path": ["providers", ":id", "suspend"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Services",
+      "item": [
+        {
+          "name": "Create Service",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {"key": "name", "value": "Pipe Repair", "type": "text"},
+                {"key": "nameAr", "value": "إصلاح الأنابيب", "type": "text"},
+                {"key": "description", "value": "Professional pipe repair service", "type": "text"},
+                {"key": "descriptionAr", "value": "خدمة إصلاح الأنابيب المهنية", "type": "text"},
+                {"key": "categoryId", "value": "550e8400-e29b-41d4-a716-446655440000", "type": "text"},
+                {"key": "basePrice", "value": "150", "type": "text"},
+                {"key": "estimatedDuration", "value": "60", "type": "text"},
+                {"key": "images", "type": "file", "src": ""}
+              ]
+            },
+            "url": {"raw": "{{base_url}}/services", "host": ["{{base_url}}"], "path": ["services"]}
+          }
+        },
+        {
+          "name": "Get All Services",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/services?page=1&limit=20", "host": ["{{base_url}}"], "path": ["services"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Get Service Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/services/categories", "host": ["{{base_url}}"], "path": ["services", "categories"]}
+          }
+        },
+        {
+          "name": "Get Services By Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/services/categories/:id/services?page=1&limit=20", "host": ["{{base_url}}"], "path": ["services", "categories", ":id", "services"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Get Popular Services",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/services/popular?page=1&limit=10", "host": ["{{base_url}}"], "path": ["services", "popular"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "10"}]}
+          }
+        },
+        {
+          "name": "Get Featured Services",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/services/featured?page=1&limit=10", "host": ["{{base_url}}"], "path": ["services", "featured"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "10"}]}
+          }
+        },
+        {
+          "name": "Search Services",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/services/search?q=plumbing&page=1&limit=20", "host": ["{{base_url}}"], "path": ["services", "search"], "query": [{"key": "q", "value": "plumbing"}, {"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Get My Services",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/services/me?page=1&limit=20", "host": ["{{base_url}}"], "path": ["services", "me"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Get Service By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/services/:id", "host": ["{{base_url}}"], "path": ["services", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Update Service",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Service Name\",\n  \"basePrice\": 200\n}"
+            },
+            "url": {"raw": "{{base_url}}/services/:id", "host": ["{{base_url}}"], "path": ["services", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Toggle Service Active",
+          "request": {
+            "method": "PATCH",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/services/:id/toggle-active", "host": ["{{base_url}}"], "path": ["services", ":id", "toggle-active"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Delete Service",
+          "request": {
+            "method": "DELETE",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/services/:id", "host": ["{{base_url}}"], "path": ["services", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Get Service Reviews",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/services/:id/reviews?page=1&limit=10", "host": ["{{base_url}}"], "path": ["services", ":id", "reviews"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "10"}], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Get Service Statistics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/services/:id/statistics", "host": ["{{base_url}}"], "path": ["services", ":id", "statistics"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bookings",
+      "item": [
+        {
+          "name": "Create Booking",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"serviceId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"scheduledDate\": \"2024-12-20\",\n  \"scheduledTime\": \"10:00\",\n  \"address\": {\n    \"label\": \"Home\",\n    \"fullAddress\": \"123 King Fahd Road\",\n    \"city\": \"Riyadh\",\n    \"district\": \"Al Olaya\",\n    \"latitude\": 24.7136,\n    \"longitude\": 46.6753\n  },\n  \"notes\": \"Please call before arrival\",\n  \"promoCode\": \"SAVE10\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/bookings", "host": ["{{base_url}}"], "path": ["bookings"]}
+          }
+        },
+        {
+          "name": "Get My Bookings",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/bookings?page=1&limit=20", "host": ["{{base_url}}"], "path": ["bookings"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Get Upcoming Bookings",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/bookings/upcoming?page=1&limit=20", "host": ["{{base_url}}"], "path": ["bookings", "upcoming"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Get Booking History",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/bookings/history?page=1&limit=20", "host": ["{{base_url}}"], "path": ["bookings", "history"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Get Active Bookings",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/bookings/active", "host": ["{{base_url}}"], "path": ["bookings", "active"]}
+          }
+        },
+        {
+          "name": "Get Booking Statistics",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/bookings/statistics?startDate=2024-01-01&endDate=2024-12-31", "host": ["{{base_url}}"], "path": ["bookings", "statistics"], "query": [{"key": "startDate", "value": "2024-01-01"}, {"key": "endDate", "value": "2024-12-31"}]}
+          }
+        },
+        {
+          "name": "Get Booking By ID",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/bookings/:id", "host": ["{{base_url}}"], "path": ["bookings", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Get Booking Timeline",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/bookings/:id/timeline", "host": ["{{base_url}}"], "path": ["bookings", ":id", "timeline"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Update Booking",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"scheduledDate\": \"2024-12-21\",\n  \"scheduledTime\": \"14:00\",\n  \"notes\": \"Updated notes\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/bookings/:id", "host": ["{{base_url}}"], "path": ["bookings", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Cancel Booking",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Schedule conflict\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/bookings/:id/cancel", "host": ["{{base_url}}"], "path": ["bookings", ":id", "cancel"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Accept Booking (Provider)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"estimatedDuration\": 90\n}"
+            },
+            "url": {"raw": "{{base_url}}/bookings/:id/accept", "host": ["{{base_url}}"], "path": ["bookings", ":id", "accept"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Reject Booking (Provider)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Not available at this time\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/bookings/:id/reject", "host": ["{{base_url}}"], "path": ["bookings", ":id", "reject"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Start Service (Provider)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/bookings/:id/start", "host": ["{{base_url}}"], "path": ["bookings", ":id", "start"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Complete Service (Provider)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"completionNotes\": \"Service completed successfully\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/bookings/:id/complete", "host": ["{{base_url}}"], "path": ["bookings", ":id", "complete"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Mark En Route (Provider)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/bookings/:id/en-route", "host": ["{{base_url}}"], "path": ["bookings", ":id", "en-route"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Mark Arrived (Provider)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/bookings/:id/arrived", "host": ["{{base_url}}"], "path": ["bookings", ":id", "arrived"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Get Real-Time Tracking",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/bookings/:id/tracking", "host": ["{{base_url}}"], "path": ["bookings", ":id", "tracking"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Get All Bookings (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/bookings/admin/all?page=1&limit=20", "host": ["{{base_url}}"], "path": ["bookings", "admin", "all"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {
+          "name": "Create Payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bookingId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"gateway\": \"MOYASAR\",\n  \"amount\": 150.00\n}"
+            },
+            "url": {"raw": "{{base_url}}/payments", "host": ["{{base_url}}"], "path": ["payments"]}
+          }
+        },
+        {
+          "name": "Get My Payments",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/payments?page=1&limit=20", "host": ["{{base_url}}"], "path": ["payments"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Get Wallet Balance",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/payments/wallet", "host": ["{{base_url}}"], "path": ["payments", "wallet"]}
+          }
+        },
+        {
+          "name": "Top Up Wallet",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 500.00,\n  \"gateway\": \"MOYASAR\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/payments/wallet/topup", "host": ["{{base_url}}"], "path": ["payments", "wallet", "topup"]}
+          }
+        },
+        {
+          "name": "Get Transaction History",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/payments/transactions?page=1&limit=20", "host": ["{{base_url}}"], "path": ["payments", "transactions"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Get Payment By ID",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/payments/:id", "host": ["{{base_url}}"], "path": ["payments", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Verify Payment",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/payments/:id/verify", "host": ["{{base_url}}"], "path": ["payments", ":id", "verify"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Moyasar Webhook",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "X-Moyasar-Signature", "value": "webhook-signature-here"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"payment_id\",\n  \"status\": \"paid\",\n  \"amount\": 15000\n}"
+            },
+            "url": {"raw": "{{base_url}}/payments/webhooks/moyasar", "host": ["{{base_url}}"], "path": ["payments", "webhooks", "moyasar"]}
+          }
+        },
+        {
+          "name": "STC Pay Callback",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transactionId\": \"stc_transaction_id\",\n  \"status\": \"success\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/payments/callbacks/stcpay", "host": ["{{base_url}}"], "path": ["payments", "callbacks", "stcpay"]}
+          }
+        },
+        {
+          "name": "Payment Callback",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/payments/callback?status=success&payment_id=123", "host": ["{{base_url}}"], "path": ["payments", "callback"], "query": [{"key": "status", "value": "success"}, {"key": "payment_id", "value": "123"}]}
+          }
+        },
+        {
+          "name": "Request Refund",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"paymentId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"reason\": \"Service not completed as expected\",\n  \"amount\": 150.00\n}"
+            },
+            "url": {"raw": "{{base_url}}/payments/refunds", "host": ["{{base_url}}"], "path": ["payments", "refunds"]}
+          }
+        },
+        {
+          "name": "Get My Refunds",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/payments/refunds?page=1&limit=20", "host": ["{{base_url}}"], "path": ["payments", "refunds"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Get Refund By ID",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/payments/refunds/:id", "host": ["{{base_url}}"], "path": ["payments", "refunds", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Get All Payments (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/payments/admin/all?page=1&limit=20", "host": ["{{base_url}}"], "path": ["payments", "admin", "all"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Approve Refund (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/payments/refunds/:id/approve", "host": ["{{base_url}}"], "path": ["payments", "refunds", ":id", "approve"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Reject Refund (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Refund request does not meet criteria\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/payments/refunds/:id/reject", "host": ["{{base_url}}"], "path": ["payments", "refunds", ":id", "reject"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Get Payment Statistics (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/payments/admin/statistics?startDate=2024-01-01&endDate=2024-12-31", "host": ["{{base_url}}"], "path": ["payments", "admin", "statistics"], "query": [{"key": "startDate", "value": "2024-01-01"}, {"key": "endDate", "value": "2024-12-31"}]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reviews",
+      "item": [
+        {
+          "name": "Create Review",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {"key": "bookingId", "value": "550e8400-e29b-41d4-a716-446655440000", "type": "text"},
+                {"key": "overallRating", "value": "5", "type": "text"},
+                {"key": "qualityRating", "value": "5", "type": "text"},
+                {"key": "professionalismRating", "value": "5", "type": "text"},
+                {"key": "punctualityRating", "value": "4", "type": "text"},
+                {"key": "comment", "value": "Excellent service, highly recommended!", "type": "text"},
+                {"key": "images", "type": "file", "src": ""}
+              ]
+            },
+            "url": {"raw": "{{base_url}}/reviews", "host": ["{{base_url}}"], "path": ["reviews"]}
+          }
+        },
+        {
+          "name": "Get All Reviews",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/reviews?page=1&limit=20", "host": ["{{base_url}}"], "path": ["reviews"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Get My Reviews",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/reviews/me?page=1&limit=20", "host": ["{{base_url}}"], "path": ["reviews", "me"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Get Provider Reviews",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/reviews/provider/:providerId?page=1&limit=20", "host": ["{{base_url}}"], "path": ["reviews", "provider", ":providerId"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}], "variable": [{"key": "providerId", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Get Review By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/reviews/:id", "host": ["{{base_url}}"], "path": ["reviews", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Update Review",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"overallRating\": 4,\n  \"comment\": \"Updated review comment\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/reviews/:id", "host": ["{{base_url}}"], "path": ["reviews", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Respond to Review (Provider)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"response\": \"Thank you for your feedback!\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/reviews/:id/respond", "host": ["{{base_url}}"], "path": ["reviews", ":id", "respond"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Mark Review Helpful",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/reviews/:id/helpful", "host": ["{{base_url}}"], "path": ["reviews", ":id", "helpful"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Delete Review",
+          "request": {
+            "method": "DELETE",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/reviews/:id", "host": ["{{base_url}}"], "path": ["reviews", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Approve Review (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/reviews/:id/approve", "host": ["{{base_url}}"], "path": ["reviews", ":id", "approve"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Reject Review (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Inappropriate content\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/reviews/:id/reject", "host": ["{{base_url}}"], "path": ["reviews", ":id", "reject"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Disputes",
+      "item": [
+        {
+          "name": "Upload Evidence File",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "body": {
+              "mode": "formdata",
+              "formdata": [{"key": "file", "type": "file", "src": ""}]
+            },
+            "url": {"raw": "{{base_url}}/disputes/upload", "host": ["{{base_url}}"], "path": ["disputes", "upload"]}
+          }
+        },
+        {
+          "name": "Create Dispute",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bookingId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"category\": \"SERVICE_QUALITY\",\n  \"description\": \"The service was not completed as agreed\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/disputes", "host": ["{{base_url}}"], "path": ["disputes"]}
+          }
+        },
+        {
+          "name": "Get My Disputes",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/disputes?page=1&limit=20", "host": ["{{base_url}}"], "path": ["disputes"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Get Dispute By ID",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/disputes/:id", "host": ["{{base_url}}"], "path": ["disputes", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Update Dispute",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Updated dispute description\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/disputes/:id", "host": ["{{base_url}}"], "path": ["disputes", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Add Evidence",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {"key": "description", "value": "Photo evidence of incomplete work", "type": "text"},
+                {"key": "files", "type": "file", "src": ""}
+              ]
+            },
+            "url": {"raw": "{{base_url}}/disputes/:id/evidence", "host": ["{{base_url}}"], "path": ["disputes", ":id", "evidence"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Get Dispute Evidence",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/disputes/:id/evidence", "host": ["{{base_url}}"], "path": ["disputes", ":id", "evidence"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Send Dispute Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"I have attached additional evidence\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/disputes/:id/messages", "host": ["{{base_url}}"], "path": ["disputes", ":id", "messages"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Get Dispute Messages",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/disputes/:id/messages?page=1&limit=50", "host": ["{{base_url}}"], "path": ["disputes", ":id", "messages"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "50"}], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Escalate Dispute",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/disputes/:id/escalate", "host": ["{{base_url}}"], "path": ["disputes", ":id", "escalate"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Withdraw Dispute",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/disputes/:id/withdraw", "host": ["{{base_url}}"], "path": ["disputes", ":id", "withdraw"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Get All Disputes (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/disputes/admin/all?status=OPEN&page=1&limit=20", "host": ["{{base_url}}"], "path": ["disputes", "admin", "all"], "query": [{"key": "status", "value": "OPEN"}, {"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Resolve Dispute (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"resolution\": \"REFUND\",\n  \"notes\": \"Full refund issued to customer\",\n  \"refundAmount\": 150.00\n}"
+            },
+            "url": {"raw": "{{base_url}}/disputes/:id/resolve", "host": ["{{base_url}}"], "path": ["disputes", ":id", "resolve"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Assign Dispute (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"adminId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/disputes/:id/assign", "host": ["{{base_url}}"], "path": ["disputes", ":id", "assign"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Get Dispute Statistics (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/disputes/admin/statistics", "host": ["{{base_url}}"], "path": ["disputes", "admin", "statistics"]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notifications",
+      "item": [
+        {
+          "name": "Get My Notifications",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/notifications?page=1&limit=20", "host": ["{{base_url}}"], "path": ["notifications"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Get Unread Count",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/notifications/unread/count", "host": ["{{base_url}}"], "path": ["notifications", "unread", "count"]}
+          }
+        },
+        {
+          "name": "Get Notification By ID",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/notifications/:id", "host": ["{{base_url}}"], "path": ["notifications", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Mark Notification as Read",
+          "request": {
+            "method": "PATCH",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/notifications/:id/read", "host": ["{{base_url}}"], "path": ["notifications", ":id", "read"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Mark All as Read",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/notifications/read-all", "host": ["{{base_url}}"], "path": ["notifications", "read-all"]}
+          }
+        },
+        {
+          "name": "Delete Notification",
+          "request": {
+            "method": "DELETE",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/notifications/:id", "host": ["{{base_url}}"], "path": ["notifications", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Clear All Notifications",
+          "request": {
+            "method": "DELETE",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/notifications/clear-all", "host": ["{{base_url}}"], "path": ["notifications", "clear-all"]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Chat",
+      "item": [
+        {
+          "name": "Get Conversations",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/chat/conversations?page=1&limit=20", "host": ["{{base_url}}"], "path": ["chat", "conversations"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Get Conversation By ID",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/chat/conversations/:id", "host": ["{{base_url}}"], "path": ["chat", "conversations", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Get Conversation Messages",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/chat/conversations/:id/messages?page=1&limit=50", "host": ["{{base_url}}"], "path": ["chat", "conversations", ":id", "messages"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "50"}], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Send Message",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {"key": "content", "value": "Hello, when will you arrive?", "type": "text"},
+                {"key": "file", "type": "file", "src": ""}
+              ]
+            },
+            "url": {"raw": "{{base_url}}/chat/conversations/:id/messages", "host": ["{{base_url}}"], "path": ["chat", "conversations", ":id", "messages"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Mark Message as Read",
+          "request": {
+            "method": "PATCH",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/chat/messages/:id/read", "host": ["{{base_url}}"], "path": ["chat", "messages", ":id", "read"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Send Typing Indicator",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isTyping\": true\n}"
+            },
+            "url": {"raw": "{{base_url}}/chat/conversations/:id/typing", "host": ["{{base_url}}"], "path": ["chat", "conversations", ":id", "typing"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Locations",
+      "item": [
+        {
+          "name": "Create Address",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"Home\",\n  \"fullAddress\": \"123 King Fahd Road, Al Olaya\",\n  \"street\": \"King Fahd Road\",\n  \"building\": \"Building 45\",\n  \"floor\": \"3\",\n  \"apartment\": \"301\",\n  \"city\": \"Riyadh\",\n  \"district\": \"Al Olaya\",\n  \"latitude\": 24.7136,\n  \"longitude\": 46.6753,\n  \"notes\": \"Near the mall\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/locations/addresses", "host": ["{{base_url}}"], "path": ["locations", "addresses"]}
+          }
+        },
+        {
+          "name": "Get My Addresses",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/locations/addresses", "host": ["{{base_url}}"], "path": ["locations", "addresses"]}
+          }
+        },
+        {
+          "name": "Get Address By ID",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/locations/addresses/:id", "host": ["{{base_url}}"], "path": ["locations", "addresses", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Update Address",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"Work\",\n  \"notes\": \"Updated notes\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/locations/addresses/:id", "host": ["{{base_url}}"], "path": ["locations", "addresses", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Set Default Address",
+          "request": {
+            "method": "PATCH",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/locations/addresses/:id/set-default", "host": ["{{base_url}}"], "path": ["locations", "addresses", ":id", "set-default"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Delete Address",
+          "request": {
+            "method": "DELETE",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/locations/addresses/:id", "host": ["{{base_url}}"], "path": ["locations", "addresses", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Search Nearby Providers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/locations/nearby/providers?latitude=24.7136&longitude=46.6753&radius=10", "host": ["{{base_url}}"], "path": ["locations", "nearby", "providers"], "query": [{"key": "latitude", "value": "24.7136"}, {"key": "longitude", "value": "46.6753"}, {"key": "radius", "value": "10"}]}
+          }
+        },
+        {
+          "name": "Search Nearby Services",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/locations/nearby/services?latitude=24.7136&longitude=46.6753&radius=10", "host": ["{{base_url}}"], "path": ["locations", "nearby", "services"], "query": [{"key": "latitude", "value": "24.7136"}, {"key": "longitude", "value": "46.6753"}, {"key": "radius", "value": "10"}]}
+          }
+        },
+        {
+          "name": "Update Provider Location",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"latitude\": 24.7136,\n  \"longitude\": 46.6753\n}"
+            },
+            "url": {"raw": "{{base_url}}/locations/provider/location", "host": ["{{base_url}}"], "path": ["locations", "provider", "location"]}
+          }
+        },
+        {
+          "name": "Get Location History",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/locations/provider/location/history?startDate=2024-01-01&endDate=2024-12-31", "host": ["{{base_url}}"], "path": ["locations", "provider", "location", "history"], "query": [{"key": "startDate", "value": "2024-01-01"}, {"key": "endDate", "value": "2024-12-31"}]}
+          }
+        },
+        {
+          "name": "Geocode Address",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/locations/geocode?address=King Fahd Road, Riyadh", "host": ["{{base_url}}"], "path": ["locations", "geocode"], "query": [{"key": "address", "value": "King Fahd Road, Riyadh"}]}
+          }
+        },
+        {
+          "name": "Reverse Geocode",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/locations/reverse-geocode?latitude=24.7136&longitude=46.6753", "host": ["{{base_url}}"], "path": ["locations", "reverse-geocode"], "query": [{"key": "latitude", "value": "24.7136"}, {"key": "longitude", "value": "46.6753"}]}
+          }
+        },
+        {
+          "name": "Get Coverage Areas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/locations/coverage-areas", "host": ["{{base_url}}"], "path": ["locations", "coverage-areas"]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Promo Codes",
+      "item": [
+        {
+          "name": "Create Promo Code (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"SAVE20\",\n  \"name\": \"20% Off First Booking\",\n  \"description\": \"Get 20% off your first booking\",\n  \"discountType\": \"PERCENTAGE\",\n  \"discountValue\": 20,\n  \"maxDiscountAmount\": 100,\n  \"minOrderAmount\": 50,\n  \"maxUsage\": 1000,\n  \"maxUsagePerUser\": 1,\n  \"validFrom\": \"2024-01-01T00:00:00Z\",\n  \"validUntil\": \"2024-12-31T23:59:59Z\",\n  \"isPublic\": true,\n  \"isActive\": true\n}"
+            },
+            "url": {"raw": "{{base_url}}/promo-codes", "host": ["{{base_url}}"], "path": ["promo-codes"]}
+          }
+        },
+        {
+          "name": "Get All Promo Codes (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/promo-codes?page=1&limit=20", "host": ["{{base_url}}"], "path": ["promo-codes"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Get Public Promo Codes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {"raw": "{{base_url}}/promo-codes/public", "host": ["{{base_url}}"], "path": ["promo-codes", "public"]}
+          }
+        },
+        {
+          "name": "Validate Promo Code",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"SAVE20\",\n  \"orderAmount\": 150\n}"
+            },
+            "url": {"raw": "{{base_url}}/promo-codes/validate", "host": ["{{base_url}}"], "path": ["promo-codes", "validate"]}
+          }
+        },
+        {
+          "name": "Apply Promo Code",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"SAVE20\",\n  \"bookingId\": \"550e8400-e29b-41d4-a716-446655440000\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/promo-codes/apply", "host": ["{{base_url}}"], "path": ["promo-codes", "apply"]}
+          }
+        },
+        {
+          "name": "Get My Promo Usages",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/promo-codes/me/usages?page=1&limit=20", "host": ["{{base_url}}"], "path": ["promo-codes", "me", "usages"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Get Promo Code By ID (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/promo-codes/:id", "host": ["{{base_url}}"], "path": ["promo-codes", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Update Promo Code (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Promo Name\",\n  \"maxUsage\": 2000\n}"
+            },
+            "url": {"raw": "{{base_url}}/promo-codes/:id", "host": ["{{base_url}}"], "path": ["promo-codes", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Deactivate Promo Code (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/promo-codes/:id/deactivate", "host": ["{{base_url}}"], "path": ["promo-codes", ":id", "deactivate"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Delete Promo Code (Admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/promo-codes/:id", "host": ["{{base_url}}"], "path": ["promo-codes", ":id"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Get Promo Statistics (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/promo-codes/:id/statistics", "host": ["{{base_url}}"], "path": ["promo-codes", ":id", "statistics"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Get Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/admin/dashboard?period=month", "host": ["{{base_url}}"], "path": ["admin", "dashboard"], "query": [{"key": "period", "value": "month"}]}
+          }
+        },
+        {
+          "name": "Get Platform Statistics",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/admin/statistics?startDate=2024-01-01&endDate=2024-12-31", "host": ["{{base_url}}"], "path": ["admin", "statistics"], "query": [{"key": "startDate", "value": "2024-01-01"}, {"key": "endDate", "value": "2024-12-31"}]}
+          }
+        },
+        {
+          "name": "Get Revenue Analytics",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/admin/revenue?startDate=2024-01-01&endDate=2024-12-31&groupBy=month", "host": ["{{base_url}}"], "path": ["admin", "revenue"], "query": [{"key": "startDate", "value": "2024-01-01"}, {"key": "endDate", "value": "2024-12-31"}, {"key": "groupBy", "value": "month"}]}
+          }
+        },
+        {
+          "name": "Get Pending Provider Approvals",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/admin/providers/pending?page=1&limit=20", "host": ["{{base_url}}"], "path": ["admin", "providers", "pending"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Approve Provider",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/admin/providers/:id/approve", "host": ["{{base_url}}"], "path": ["admin", "providers", ":id", "approve"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Reject Provider",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Incomplete documentation\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/admin/providers/:id/reject", "host": ["{{base_url}}"], "path": ["admin", "providers", ":id", "reject"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Get Pending Documents",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/admin/documents/pending?page=1&limit=20", "host": ["{{base_url}}"], "path": ["admin", "documents", "pending"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "20"}]}
+          }
+        },
+        {
+          "name": "Verify Document",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/admin/documents/:id/verify", "host": ["{{base_url}}"], "path": ["admin", "documents", ":id", "verify"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Reject Document",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Document is expired\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/admin/documents/:id/reject", "host": ["{{base_url}}"], "path": ["admin", "documents", ":id", "reject"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Get System Settings",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/admin/settings?category=general", "host": ["{{base_url}}"], "path": ["admin", "settings"], "query": [{"key": "category", "value": "general"}]}
+          }
+        },
+        {
+          "name": "Update System Setting",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"value\": \"new-setting-value\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/admin/settings/:key", "host": ["{{base_url}}"], "path": ["admin", "settings", ":key"], "variable": [{"key": "key", "value": "platform_fee_percentage"}]}
+          }
+        },
+        {
+          "name": "Get Audit Logs",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/admin/audit-logs?page=1&limit=50", "host": ["{{base_url}}"], "path": ["admin", "audit-logs"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "50"}]}
+          }
+        },
+        {
+          "name": "Get Bookings Report",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/admin/reports/bookings?startDate=2024-01-01&endDate=2024-12-31&format=json", "host": ["{{base_url}}"], "path": ["admin", "reports", "bookings"], "query": [{"key": "startDate", "value": "2024-01-01"}, {"key": "endDate", "value": "2024-12-31"}, {"key": "format", "value": "json"}]}
+          }
+        },
+        {
+          "name": "Get Revenue Report",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/admin/reports/revenue?startDate=2024-01-01&endDate=2024-12-31&format=json", "host": ["{{base_url}}"], "path": ["admin", "reports", "revenue"], "query": [{"key": "startDate", "value": "2024-01-01"}, {"key": "endDate", "value": "2024-12-31"}, {"key": "format", "value": "json"}]}
+          }
+        },
+        {
+          "name": "Get Providers Report",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/admin/reports/providers?format=json", "host": ["{{base_url}}"], "path": ["admin", "reports", "providers"], "query": [{"key": "format", "value": "json"}]}
+          }
+        },
+        {
+          "name": "Ban User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{access_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Repeated policy violations\"\n}"
+            },
+            "url": {"raw": "{{base_url}}/admin/users/:id/ban", "host": ["{{base_url}}"], "path": ["admin", "users", ":id", "ban"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Unban User",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/admin/users/:id/unban", "host": ["{{base_url}}"], "path": ["admin", "users", ":id", "unban"], "variable": [{"key": "id", "value": "550e8400-e29b-41d4-a716-446655440000"}]}
+          }
+        },
+        {
+          "name": "Get Platform Trends",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/admin/analytics/trends?metric=bookings&period=month", "host": ["{{base_url}}"], "path": ["admin", "analytics", "trends"], "query": [{"key": "metric", "value": "bookings"}, {"key": "period", "value": "month"}]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Analytics",
+      "item": [
+        {
+          "name": "Get Provider Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/analytics/provider/dashboard?startDate=2024-01-01&endDate=2024-12-31", "host": ["{{base_url}}"], "path": ["analytics", "provider", "dashboard"], "query": [{"key": "startDate", "value": "2024-01-01"}, {"key": "endDate", "value": "2024-12-31"}]}
+          }
+        },
+        {
+          "name": "Get Provider Performance",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/analytics/provider/performance?period=month", "host": ["{{base_url}}"], "path": ["analytics", "provider", "performance"], "query": [{"key": "period", "value": "month"}]}
+          }
+        },
+        {
+          "name": "Get Provider Earnings Analytics",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/analytics/provider/earnings?startDate=2024-01-01&endDate=2024-12-31&groupBy=month", "host": ["{{base_url}}"], "path": ["analytics", "provider", "earnings"], "query": [{"key": "startDate", "value": "2024-01-01"}, {"key": "endDate", "value": "2024-12-31"}, {"key": "groupBy", "value": "month"}]}
+          }
+        },
+        {
+          "name": "Get Customer Summary",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/analytics/customer/summary", "host": ["{{base_url}}"], "path": ["analytics", "customer", "summary"]}
+          }
+        },
+        {
+          "name": "Get Customer Spending",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/analytics/customer/spending?startDate=2024-01-01&endDate=2024-12-31", "host": ["{{base_url}}"], "path": ["analytics", "customer", "spending"], "query": [{"key": "startDate", "value": "2024-01-01"}, {"key": "endDate", "value": "2024-12-31"}]}
+          }
+        }
+      ]
+    }
+  ]
+}
